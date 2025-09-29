@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'ui/splash_screen.dart';
 import 'ui/chat.dart';
 import 'ui/recur.dart';
 import 'ui/paynow.dart';
+import 'ui/playground.dart';
 
 void main() {
   runApp(const TransactionsApp());
@@ -37,10 +39,12 @@ class TransactionsApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       initialRoute: '/',
       routes: {
-        '/': (context) => const TransactionsScreen(),
+        '/': (context) => const SplashScreen(),
+        '/main': (context) => const TransactionsScreen(),
         '/chat': (context) => const ChatPage(),
         '/recurring': (context) => const RecurringPaymentScreen(),
         '/paynow': (context) => const PayNowScreen(),
+        '/playground': (context) => const PlaygroundScreen(),
       },
     );
   }
@@ -447,9 +451,10 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
         break;
       case 3: // Settings
         // Handle settings navigation if needed
-        setState(() {
-          _selectedNavIndex = index;
-        });
+        Navigator.pushNamed(context, '/playground');
+        // setState(() {
+        //   _selectedNavIndex = index;
+        // });
         break;
       default:
         throw UnimplementedError();
